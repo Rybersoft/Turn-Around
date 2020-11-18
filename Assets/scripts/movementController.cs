@@ -34,7 +34,7 @@ public class movementController : MonoBehaviour
 	void Update()
 	{
 		Movement();
-		GetInput();
+		// GetInput();
 		//anim.SetFloat("horizontal", Input.GetAxis("Horizontal"));
 
 
@@ -43,8 +43,6 @@ public class movementController : MonoBehaviour
 	{
 		if (controller.isGrounded)
 		{
-
-
 			if (Input.GetKey(KeyCode.W))
 			{
 				if (anim.GetBool("attacking") == true)
@@ -65,18 +63,13 @@ public class movementController : MonoBehaviour
 				anim.SetBool("running", false);
 				anim.SetInteger("condition", 0);
 				moveDir = new Vector3(0, 0, 0);
-
-
 			}
 		}
 		rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
 		transform.eulerAngles = new Vector3(0, rot, 0);
-
-
 		moveDir.y -= gravity * Time.deltaTime;
 		controller.Move(moveDir * Time.deltaTime);
 	}
-
 	void GetInput()
 	{
 		if (controller.isGrounded)

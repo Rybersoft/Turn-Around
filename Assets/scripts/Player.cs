@@ -6,20 +6,29 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
+    public double speed;
+    CharacterController controller;
+	Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		controller = GetComponent<CharacterController>();
+		anim = GetComponent<Animator>();
+        anim.SetBool("running", true);
+        anim.SetInteger("condition", 1);
+        speed = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {   
-        transform.Translate(Vector3.forward * Time.deltaTime);
+        transform.Translate(0,0,(float) (Time.deltaTime * speed));
 
     }
 
     void FixedUpdate(){
-        
+        speed+=.01;
     }
     public void moveForward(double speed){
         rb.velocity = transform.forward;
